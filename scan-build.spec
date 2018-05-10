@@ -20,6 +20,7 @@ Summary:        A Python scan-build implementation
 License:        MIT
 URL:            https://pypi.python.org/pypi/%{modname}
 Source0:        https://files.pythonhosted.org/packages/7e/94/c8235245aee84953a03ed49e2bb6985afa03099a3a0b190a9a0db74701bb/scan-build-2.0.13.tar.gz
+Patch0:         0001-fixrequires.patch
 
 BuildArch:      noarch
 
@@ -56,7 +57,8 @@ An implementation of Clang scan-build in Python
 %endif
 
 %prep
-%autosetup -n %{modname}-%{version}
+%setup -q -n %{modname}-%{version}
+%patch0 -p1
 
 %build
 %py2_build
