@@ -38,6 +38,7 @@ Requires:       python2-typing
 Requires:       python2-setuptools
 Requires:       python2-typing
 
+BuildRequires:  clang
 BuildRequires:  python2-devel
 BuildRequires:  python2-nose
 BuildRequires:  python2-setuptools
@@ -57,6 +58,7 @@ Summary:        A Python scan-build implementation
 
 Requires:       python3-setuptools
 
+BuildRequires:  clang
 BuildRequires:  python3-devel
 BuildRequires:  python3-nose
 BuildRequires:  python3-setuptools
