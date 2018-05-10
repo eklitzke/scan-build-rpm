@@ -130,8 +130,13 @@ ln -s intercept-cc-%{defaultpython} %{buildroot}%{_bindir}/intercept-cc
 %files -n python2-%{modname}
 %doc README.rst CHANGES.txt LICENSE.txt
 %if %{defaultpython} == 2
-%{_bindir}/{analyze,intercept}-{build,c++,cc}
 %{_bindir}/scan-build
+%{_bindir}/analyze-build
+%{_bindir}/analyze-c++
+%{_bindir}/analyze-cc
+%{_bindir}/intercept-build
+%{_bindir}/intercept-c++
+%{_bindir}/intercept-cc
 %endif
 %{_bindir}/scan-build-2
 %{_bindir}/scan-build-%{python2_version}
@@ -153,8 +158,13 @@ ln -s intercept-cc-%{defaultpython} %{buildroot}%{_bindir}/intercept-cc
 %files -n python%{python3_pkgversion}-%{modname}
 %doc README.rst CHANGES.txt LICENSE.txt
 %if %{defaultpython} == 3
-%{_bindir}/{analyze,intercept}-{build,c++,cc}
 %{_bindir}/scan-build
+%{_bindir}/analyze-build
+%{_bindir}/analyze-c++
+%{_bindir}/analyze-cc
+%{_bindir}/intercept-build
+%{_bindir}/intercept-c++
+%{_bindir}/intercept-cc
 %endif
 %{_bindir}/scan-build-3
 %{_bindir}/scan-build-%{python3_version}
