@@ -12,14 +12,17 @@
 
 %global modname scan-build
 
+# set to 1 to run lit tests; disabled for now as they are flaky
+%global littests 0
+
 Name:           python-%{modname}
 Version:        2.0.13
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A Python scan-build implementation
 
 License:        MIT
-URL:            https://pypi.python.org/pypi/%{modname}
-Source0:        https://files.pythonhosted.org/packages/7e/94/c8235245aee84953a03ed49e2bb6985afa03099a3a0b190a9a0db74701bb/scan-build-2.0.13.tar.gz
+URL:            https://github.com/rizsotto/%{modname}
+Source0:        https://github.com/rizsotto/%{modname}/archive/%{version}/%{modname}-%{version}.tar.gz
 Patch0:         0001-fixrequires.patch
 
 BuildArch:      noarch
@@ -36,10 +39,13 @@ Requires:       python2-setuptools
 Requires:       python2-typing
 
 BuildRequires:  python2-devel
+BuildRequires:  python2-nose
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-typing
-#BuildRequires:  python2-lit
-#BuildRequires:  python2-nose
+%if %{littests}
+BuildRequires:  cmake
+BuildRequires:  python2-lit
+%endif
 
 %description -n python2-%{modname}
 An implementation of Clang scan-build in Python
@@ -52,9 +58,12 @@ Summary:        A Python scan-build implementation
 Requires:       python3-setuptools
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-nose
 BuildRequires:  python3-setuptools
-#BuildRequires:  python3-lit
-#BuildRequires:  python3-nose
+%if %{littests}
+BuildRequires:  cmake
+BuildRequires:  python3-lit
+%endif
 
 %description -n python%{python3_pkgversion}-%{modname}
 An implementation of Clang scan-build in Python
@@ -126,13 +135,17 @@ ln -s intercept-c++-%{defaultpython} %{buildroot}%{_bindir}/intercept-c++
 ln -s intercept-cc-%{defaultpython} %{buildroot}%{_bindir}/intercept-cc
 
 %check
-# FIXME: scan-build source tarball does not include tests directory
-# nosetests-2 tests/unit
-# lit-2 -v tests
-# %if %{with python3}
-# nosetests-3 tests/unit
-# lit-3 -v tests
-# %endif
+nosetests-2 tests/unit
+%if %{littests}
+CCACHE_DISABLE=1 lit -v tests
+%endif
+
+%if %{with python3}
+nosetests-3 tests/unit
+%if %{littests}
+CCACHE_DISABLE=1 lit -v tests
+%endif
+%endif
 
 %files -n python2-%{modname}
 %doc README.rst CHANGES.txt LICENSE.txt
@@ -191,6 +204,9 @@ ln -s intercept-cc-%{defaultpython} %{buildroot}%{_bindir}/intercept-cc
 %endif
 
 %changelog
+* Thu May 10 2018 Evan Klitzke <evan@eklitzke.org> - 2.0.13-3
+- Run nose tests when building RPM
+
 * Thu May 10 2018 Evan Klitzke <evan@eklitzke.org> - 2.0.13-2
 - Update to be more conformant with py2/py3 packaging guidelines
 
