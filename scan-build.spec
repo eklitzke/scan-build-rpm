@@ -36,6 +36,8 @@ Requires:       python2-setuptools
 Requires:       python2-typing
 
 BuildRequires:  python2-devel
+BuildRequires:  python2-lit
+BuildRequires:  python2-nose
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-typing
 
@@ -50,6 +52,8 @@ Summary:        A Python scan-build implementation
 Requires:       python3-setuptools
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-lit
+BuildRequires:  python3-nose
 BuildRequires:  python3-setuptools
 
 %description -n python%{python3_pkgversion}-%{modname}
@@ -122,10 +126,13 @@ ln -s intercept-c++-%{defaultpython} %{buildroot}%{_bindir}/intercept-c++
 ln -s intercept-cc-%{defaultpython} %{buildroot}%{_bindir}/intercept-cc
 
 %check
-%{__python2} setup.py test
-%if %{with python3}
-%{__python3} setup.py test
-%endif
+# FIXME: scan-build source tarball does not include tests directory
+# nosetests-2 tests/unit
+# lit-2 -v tests
+# %if %{with python3}
+# nosetests-3 tests/unit
+# lit-3 -v tests
+# %endif
 
 %files -n python2-%{modname}
 %doc README.rst CHANGES.txt LICENSE.txt
