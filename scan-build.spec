@@ -36,10 +36,10 @@ Requires:       python2-setuptools
 Requires:       python2-typing
 
 BuildRequires:  python2-devel
-BuildRequires:  python2-lit
-BuildRequires:  python2-nose
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-typing
+#BuildRequires:  python2-lit
+#BuildRequires:  python2-nose
 
 %description -n python2-%{modname}
 An implementation of Clang scan-build in Python
@@ -52,9 +52,9 @@ Summary:        A Python scan-build implementation
 Requires:       python3-setuptools
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-lit
-BuildRequires:  python3-nose
 BuildRequires:  python3-setuptools
+#BuildRequires:  python3-lit
+#BuildRequires:  python3-nose
 
 %description -n python%{python3_pkgversion}-%{modname}
 An implementation of Clang scan-build in Python
