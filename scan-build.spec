@@ -2,7 +2,7 @@
 %global pypi_name scan-build
 
 Name:           python-%{pypi_name}
-Version:        2.0.13
+Version:        2.0.14
 Release:        1%{?dist}
 Summary:        Static code analyzer wrapper for Clang/GCC
 
@@ -86,5 +86,8 @@ rm -rf %{buildroot}%{_bindir}/*
 %{python3_sitelib}/scan_build-%{version}-py?.?.egg-info
 
 %changelog
+* Sat Oct 20 2018 Evan Klitzke <evan@eklitzke.org> - 2.0.14-1
+- Bump upstream version.
+
 * Tue May 15 2018 Evan Klitzke <evan@eklitzke.org> - 2.0.13-1
 - Initial package.
