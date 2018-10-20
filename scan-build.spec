@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        2.0.14
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Static code analyzer wrapper for Clang/GCC
 
 License:        NCSA
@@ -41,7 +41,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:       python3dist(setuptools)
-Requires:       python3dist(typing)
 %description -n python3-%{pypi_name}
 A package designed to wrap a build so that all calls to gcc/clang are
 intercepted and logged into a compilation database and/or piped to the clang
@@ -86,6 +85,9 @@ rm -rf %{buildroot}%{_bindir}/*
 %{python3_sitelib}/scan_build-%{version}-py?.?.egg-info
 
 %changelog
+* Tue Mar 26 2019 Evan Klitzke <evan@eklitzke.org> - 2.0.14-2
+- rebuilt with correct typing dependency for python3
+
 * Sat Oct 20 2018 Evan Klitzke <evan@eklitzke.org> - 2.0.14-1
 - Bump upstream version.
 
