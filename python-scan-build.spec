@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        2.0.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        static code analyzer wrapper for Clang
 
 License:        LICENSE.txt
@@ -22,7 +22,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
  
 Requires:       python3dist(setuptools)
-Requires:       python3dist(typing)
 %description -n python3-%{pypi_name}
  .. image::
 
@@ -53,5 +52,8 @@ rm -rf %{pypi_name}.egg-info
 %{python3_sitelib}/scan_build-%{version}-py?.?.egg-info
 
 %changelog
+* Thu Mar 28 2019 Evan Klitzke <evan@eklitzke.org> - 2.0.15-2
+- Remove typing dep, which is built into python3.5+
+
 * Tue Mar 26 2019 Evan Klitzke <evan@eklitzke.org> - 2.0.15-1
 - Initial package.
