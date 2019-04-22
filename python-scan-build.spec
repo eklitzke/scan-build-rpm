@@ -4,13 +4,15 @@
 
 Name:           python-%{pypi_name}
 Version:        2.0.15
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        static code analyzer wrapper for Clang
 
 License:        LICENSE.txt
 URL:            https://github.com/rizsotto/scan-build
 Source0:        https://files.pythonhosted.org/packages/source/s/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
- 
+
+Patch1:         0001-no-typing.patch
+
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(setuptools)
 
@@ -20,7 +22,7 @@ BuildRequires:  python3dist(setuptools)
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
- 
+
 Requires:       python3dist(setuptools)
 %description -n python3-%{pypi_name}
  .. image::
@@ -52,6 +54,9 @@ rm -rf %{pypi_name}.egg-info
 %{python3_sitelib}/scan_build-%{version}-py?.?.egg-info
 
 %changelog
+* Mon Apr 22 2019 Evan Klitzke <evan@eklitzke.org> - 2.0.15-3
+- Actually remove typing dep
+
 * Thu Mar 28 2019 Evan Klitzke <evan@eklitzke.org> - 2.0.15-2
 - Remove typing dep, which is built into python3.5+
 
